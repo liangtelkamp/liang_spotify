@@ -13,4 +13,3 @@ Identify several tracks in your corpus that are either extremely typical or atyp
 Although it is not required at this stage, you may want to try using Github Markdown Links to an external site.mark-up to format your text.
 
 I do not know if there are any songs atypical, since that is one of the things I want to sort out. Solsbury Hill from Peter Gabriel is however a song that is quite slow and is written in 7/4 time, which is unusual for Rock music. I would classify 'Gimme shelter' from the Rolling stones as a typical rock song. It has the usual time signature 4/4 and there is an electric guitar involved.
-A line I wrote on my local computer  
