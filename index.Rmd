@@ -1,7 +1,10 @@
 ---
 author: "Liang Telkamp"
 date: "2023-02-13"
-output: html_document
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: plotly
 ---
 
 ```{r setup, include=FALSE}
