@@ -7,7 +7,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+Page 1
+==============
 ### Homework week 6: Introduction
 
 Rock classics: <https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4> Blues classics: <https://open.spotify.com/playlist/37i9dQZF1DXd9rSDyQguIk?si=618ca90308354bbc>
@@ -22,16 +23,14 @@ Identify several tracks in your corpus that are either extremely typical or atyp
 
 I do not know if there are any songs atypical, since that is one of the things I want to sort out. Solsbury Hill from Peter Gabriel is however a song that is quite slow and is written in 7/4 time, which is unusual for Rock music. I would classify 'Gimme shelter' from the Rolling stones as a typical rock song. It has the usual time signature 4/4 and there is an electric guitar involved.
 
+Page 2
+===========
 ### Homework week 7: GGPlot
+
+Column 1
+---------
  ![Plot 1](plot1_h7.png)
-Use ggplot2 to create one or more data visualisations of track-level Spotify features for your corpus. Focus on the quality of the visualisations rather than quantity. In particular, consider some of Tufte's classical design principles.
+This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
 
-Have you maximised the amount of data displayed in your visualisation, making full use of ggplot2 tools like colour, fill, faceting, and text labels for outliers? Have you reduced extraneous 'chart junk' as much as possible, for example, by replacing legends with text labels and making thoughtful choices about the axis limits and labels? Does your visualisation have a clear story to tell that invokes curiosity about your research question? When you are happy with your plot:
-
-Save your plot as an image using the Export button from RStudio (see graphic below).
-
-### Homework week 8
-
-### Homework week 9
-
-### Homework week 10
+Column 2
+--------
