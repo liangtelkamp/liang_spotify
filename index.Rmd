@@ -26,11 +26,5 @@ I do not know if there are any songs atypical, since that is one of the things I
 Page 2
 ===========
 ### Homework week 7: GGPlot
-
-Column 1
----------
  ![Plot 1](plot1_h7.png)
 This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
-
-Column 2
---------
