@@ -23,7 +23,7 @@ Identify several tracks in your corpus that are either extremely typical or atyp
 I do not know if there are any songs atypical, since that is one of the things I want to sort out. Solsbury Hill from Peter Gabriel is however a song that is quite slow and is written in 7/4 time, which is unusual for Rock music. I would classify 'Gimme shelter' from the Rolling stones as a typical rock song. It has the usual time signature 4/4 and there is an electric guitar involved.
 
 ### Homework week 7: GGPlot
-
+ ![Plot 1](plot1_h7.png)
 Use ggplot2 to create one or more data visualisations of track-level Spotify features for your corpus. Focus on the quality of the visualisations rather than quantity. In particular, consider some of Tufte's classical design principles.
 
 Have you maximised the amount of data displayed in your visualisation, making full use of ggplot2 tools like colour, fill, faceting, and text labels for outliers? Have you reduced extraneous 'chart junk' as much as possible, for example, by replacing legends with text labels and making thoughtful choices about the axis limits and labels? Does your visualisation have a clear story to tell that invokes curiosity about your research question? When you are happy with your plot:
