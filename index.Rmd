@@ -5,11 +5,11 @@ output:
     storyboard: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r include=FALSE}
+```{r echo=FALSE}
 # Install packages and playlists form spotify
 library(spotifyr)
 library(tidyverse)
@@ -51,7 +51,7 @@ The playlists used for this project:
 
 ### Homework week 7: GGPlot
 
-```{r include = FALSE}
+```{r echo = FALSE}
 playlists <- bind_rows(rock, blues)
 playlists %>%
   group_by(playlist_name)
@@ -79,10 +79,9 @@ ggplot(playlists,
 
 This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
 
-Column B
-------------------
+## Column B
 
-```{r include=FALSE}
+```{r echo=FALSE}
 survey <- data.frame(playlist_name=rep(c("Blues Classics", "Rock Classics"),each=7),
                      variable=rep(c("acousticness", "danceability", "energy", "speechiness", "instrumentalness", "liveness", "valence"),2),
                      score=c(0.4386061, 0.5666286, 0.5221743, 0.05823000, 0.09435122, 0.1885686, 0.7043571, 0.1356968, 
