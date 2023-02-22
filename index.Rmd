@@ -3,13 +3,14 @@ title: "Portofolio Liang Telkamp"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
+    code_folding: "hide"
 ---
 
-```{r setup, output=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r output=FALSE}
+```{r include=FALSE}
 # Install packages and playlists form spotify
 library(spotifyr)
 library(tidyverse)
