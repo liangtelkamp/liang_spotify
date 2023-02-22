@@ -52,7 +52,7 @@ Discussion & Conclusion
 
 More information
 ===========
-## Variables
+### Acousticness
 
 "Acousticness" is one of the audio features that Spotify uses to describe a song's sound characteristics. It measures the degree to which a song sounds like it was recorded using only acoustic instruments or with electronic instruments that simulate an acoustic sound.
 
