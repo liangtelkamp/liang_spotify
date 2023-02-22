@@ -1,5 +1,5 @@
 ---
-title: "Portofolie Liang Telkamp"
+title: "Portofolio Liang Telkamp"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 Introduction
 ==============
+Column A
+-----------------------
 ### Homework week 6: Introduction
 
 Rock classics: <https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4> Blues classics: <https://open.spotify.com/playlist/37i9dQZF1DXd9rSDyQguIk?si=618ca90308354bbc>
@@ -24,8 +26,17 @@ Identify several tracks in your corpus that are either extremely typical or atyp
 
 I do not know if there are any songs atypical, since that is one of the things I want to sort out. Solsbury Hill from Peter Gabriel is however a song that is quite slow and is written in 7/4 time, which is unusual for Rock music. I would classify 'Gimme shelter' from the Rolling stones as a typical rock song. It has the usual time signature 4/4 and there is an electric guitar involved.
 
+Column B
+-------------------
+ABC
+
 Visualisations
 ===========
+Column A
+-------------------
 ### Homework week 7: GGPlot
  ![Plot 1](plot1_h7.png)
 This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
+
+Column B
+------------------
