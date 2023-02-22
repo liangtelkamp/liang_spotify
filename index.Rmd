@@ -14,7 +14,7 @@ Column A
 -----------------------
 ### Homework week 6: Introduction
 
-Rock classics: <https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4> Blues classics: <https://open.spotify.com/playlist/37i9dQZF1DXd9rSDyQguIk?si=618ca90308354bbc>
+
 
 What is the influence of 'blues' in rock music? Blues has an influence on rock music, but can we still hear those characteristics in the rock music? Elvis Presley, king of rock, covered a lot of music genres, among them the blues. Can we still find characteristics of blues in modern day Rock music? What do those genres have in common?
 
@@ -28,7 +28,10 @@ I do not know if there are any songs atypical, since that is one of the things I
 
 Column B
 -------------------
-ABC
+The playlists used for this project:
+
+[Blues classics](https://open.spotify.com/playlist/37i9dQZF1DXd9rSDyQguIk?si=618ca90308354bbc)
+[Rock classics](https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4> )
 
 Visualisations
 ===========
