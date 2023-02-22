@@ -5,11 +5,11 @@ output:
     storyboard: true
 ---
 
-```{r setup, echo=FALSE}
+```{r setup, output=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r echo=FALSE}
+```{r output=FALSE}
 # Install packages and playlists form spotify
 library(spotifyr)
 library(tidyverse)
@@ -19,6 +19,12 @@ library(plotly)
 
 rock <- get_playlist_audio_features("", "37i9dQZF1DWXRqgorJj26U?si=5127aa9b32a64a07")
 blues <- get_playlist_audio_features("", "37i9dQZF1DXd9rSDyQguIk?si=a957cbd30d114d42")
+playlists <- bind_rows(rock, blues)
+playlists %>%
+  group_by(playlist_name)
+
+
+playlists %>%  group_by(playlist_name) %>%   summarise_all(mean) -> playlists.summary
 ```
 
 # Introduction
@@ -52,13 +58,6 @@ The playlists used for this project:
 ### Homework week 7: GGPlot
 
 ```{r echo=FALSE}
-playlists <- bind_rows(rock, blues)
-playlists %>%
-  group_by(playlist_name)
-
-
-playlists %>%  group_by(playlist_name) %>%   summarise_all(mean) -> playlists.summary
-
 scatterplot1 <- ggplot(playlists, 
        aes(
         x = energy, 
