@@ -51,7 +51,7 @@ The playlists used for this project:
 
 ### Homework week 7: GGPlot
 
-```{r echo = FALSE}
+```{r echo=FALSE}
 playlists <- bind_rows(rock, blues)
 playlists %>%
   group_by(playlist_name)
@@ -59,7 +59,7 @@ playlists %>%
 
 playlists %>%  group_by(playlist_name) %>%   summarise_all(mean) -> playlists.summary
 
-ggplot(playlists, 
+scatterplot1 <- ggplot(playlists, 
        aes(
         x = energy, 
         y = acousticness, 
@@ -75,6 +75,8 @@ ggplot(playlists,
   guides(size = FALSE) +
   theme(text=element_text(size=16)) +
   geom_point(data = playlists.summary, shape = 15, size = 5, alpha = 1)
+
+ggplotly(scatterplot1)
 ```
 
 This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
