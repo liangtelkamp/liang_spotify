@@ -8,6 +8,17 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r} 
+# Install packages and playlists form spotify
+library(spotifyr)
+library(tidyverse)
+library(ggplot2)
+library(extrafont)
+library(plotly)
+
+rock <- get_playlist_audio_features("", "37i9dQZF1DWXRqgorJj26U?si=5127aa9b32a64a07")
+blues <- get_playlist_audio_features("", "37i9dQZF1DXd9rSDyQguIk?si=a957cbd30d114d42")
+```
 Introduction
 ==============
 Column A
@@ -38,14 +49,35 @@ Visualisations
 ===========
 Column A
 -------------------
+
 ### Homework week 7: GGPlot
-![Plot 1](plot1_h7.png)
+![Plot 1](p1.png)
 
  
 This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
 
 Column B
 ------------------
+
+
+```{r}
+survey <- data.frame(playlist_name=rep(c("Blues Classics", "Rock Classics"),each=7),
+                     variable=rep(c("acousticness", "danceability", "energy", "speechiness", "instrumentalness", "liveness", "valence"),2),
+                     score=c(0.4386061, 0.5666286, 0.5221743, 0.05823000, 0.09435122, 0.1885686, 0.7043571, 0.1356968, 
+                             0.5227475, 0.7320990, 0.05897277, 0.05827160, 0.1937203, 0.5989050))
+
+barplot1 <- ggplot(survey, aes(x=variable, y=score, fill=playlist_name)) + 
+  scale_fill_manual(values = c("Blues Classics" = "#87CEFA", "Rock Classics" = "#EE6363"))+
+  geom_bar(stat="identity", position=position_dodge()) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1)) +
+  labs(fill = "Genre") +
+  ggtitle("The average of several variables from the spotify features per genre") +
+  xlab(element_blank()) +
+  ylim(0,1)
+
+ggplotly(barplot1)
+```
+
 
 Discussion & Conclusion
 ===========
