@@ -8,7 +8,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-```{r} 
+
+```{r include=FALSE}
 # Install packages and playlists form spotify
 library(spotifyr)
 library(tidyverse)
@@ -19,13 +20,12 @@ library(plotly)
 rock <- get_playlist_audio_features("", "37i9dQZF1DWXRqgorJj26U?si=5127aa9b32a64a07")
 blues <- get_playlist_audio_features("", "37i9dQZF1DXd9rSDyQguIk?si=a957cbd30d114d42")
 ```
-Introduction
-==============
-Column A
------------------------
+
+# Introduction
+
+## Column A
+
 ### Homework week 6: Introduction
-
-
 
 What is the influence of 'blues' in rock music? Blues has an influence on rock music, but can we still hear those characteristics in the rock music? Elvis Presley, king of rock, covered a lot of music genres, among them the blues. Can we still find characteristics of blues in modern day Rock music? What do those genres have in common?
 
@@ -37,30 +37,52 @@ Identify several tracks in your corpus that are either extremely typical or atyp
 
 I do not know if there are any songs atypical, since that is one of the things I want to sort out. Solsbury Hill from Peter Gabriel is however a song that is quite slow and is written in 7/4 time, which is unusual for Rock music. I would classify 'Gimme shelter' from the Rolling stones as a typical rock song. It has the usual time signature 4/4 and there is an electric guitar involved.
 
-Column B
--------------------
+## Column B
+
 The playlists used for this project:
 
 [Blues classics](https://open.spotify.com/playlist/37i9dQZF1DXd9rSDyQguIk?si=618ca90308354bbc)
 
-[Rock classics](https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4> )
+[Rock classics](https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4%3E)
 
-Visualisations
-===========
-Column A
--------------------
+# Visualisations
+
+## Column A
 
 ### Homework week 7: GGPlot
-![Plot 1](p1.png)
 
- 
+```{r include = FALSE}
+playlists <- bind_rows(rock, blues)
+playlists %>%
+  group_by(playlist_name)
+
+
+playlists %>%  group_by(playlist_name) %>%   summarise_all(mean) -> playlists.summary
+
+ggplot(playlists, 
+       aes(
+        x = energy, 
+        y = acousticness, 
+        alpha = valence,
+        size = 1,
+        color = playlist_name)) +
+  scale_colour_manual(values = c("Blues Classics" = "#87CEFA", "Rock Classics" = "#EE6363"))+
+  geom_point() +
+  ggtitle("The acousticness and energy of a song") +
+  xlab("Energy") +
+  ylab("Acousticness") +
+  labs(color = "Genre", valence = "Valence") +
+  guides(size = FALSE) +
+  theme(text=element_text(size=16)) +
+  geom_point(data = playlists.summary, shape = 15, size = 5, alpha = 1)
+```
+
 This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
 
 Column B
 ------------------
 
-
-```{r}
+```{r include=FALSE}
 survey <- data.frame(playlist_name=rep(c("Blues Classics", "Rock Classics"),each=7),
                      variable=rep(c("acousticness", "danceability", "energy", "speechiness", "instrumentalness", "liveness", "valence"),2),
                      score=c(0.4386061, 0.5666286, 0.5221743, 0.05823000, 0.09435122, 0.1885686, 0.7043571, 0.1356968, 
@@ -78,12 +100,10 @@ barplot1 <- ggplot(survey, aes(x=variable, y=score, fill=playlist_name)) +
 ggplotly(barplot1)
 ```
 
+# Discussion & Conclusion
 
-Discussion & Conclusion
-===========
+# More information
 
-More information
-===========
 ### Acousticness
 
 "Acousticness" is one of the audio features that Spotify uses to describe a song's sound characteristics. It measures the degree to which a song sounds like it was recorded using only acoustic instruments or with electronic instruments that simulate an acoustic sound.
