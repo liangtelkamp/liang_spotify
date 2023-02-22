@@ -31,6 +31,7 @@ Column B
 The playlists used for this project:
 
 [Blues classics](https://open.spotify.com/playlist/37i9dQZF1DXd9rSDyQguIk?si=618ca90308354bbc)
+
 [Rock classics](https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4> )
 
 Visualisations
@@ -38,8 +39,21 @@ Visualisations
 Column A
 -------------------
 ### Homework week 7: GGPlot
- ![Plot 1](plot1_h7.png)
+![Plot 1](plot1_h7.png)
+
+ 
 This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
 
 Column B
 ------------------
+
+Discussion & Conclusion
+===========
+
+More information
+===========
+## Variables
+
+"Acousticness" is one of the audio features that Spotify uses to describe a song's sound characteristics. It measures the degree to which a song sounds like it was recorded using only acoustic instruments or with electronic instruments that simulate an acoustic sound.
+
+The acousticness value is measured on a scale from 0.0 to 1.0, with 1.0 indicating a high level of acousticness and 0.0 indicating a low level. A song with a high acousticness value will typically have a more organic, natural sound, with the presence of acoustic guitars, pianos, or other acoustic instruments being more prominent in the mix. A song with a low acousticness value will usually have a more synthetic or electronic sound, with the presence of electronic instruments being more prominent in the mix.
