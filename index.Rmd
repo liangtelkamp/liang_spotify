@@ -12,11 +12,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r include=FALSE}
 # Install packages and playlists form spotify
+remotes::install_github('jaburgoyne/compmus')
 library(spotifyr)
 library(tidyverse)
 library(ggplot2)
 library(extrafont)
 library(plotly)
+library(compmus)
 
 rock <- get_playlist_audio_features("", "37i9dQZF1DWXRqgorJj26U?si=5127aa9b32a64a07")
 blues <- get_playlist_audio_features("", "37i9dQZF1DXd9rSDyQguIk?si=a957cbd30d114d42")
@@ -96,6 +98,33 @@ ggplotly(barplot1)
 ```
 
 > A barplot to show the average scores for multiple variables between 0 and 1.This graph gives us a quick overview of the differences and similarities between the two genres according to spotify. \# Discussion & Conclusion
+
+### Chromagram
+```{r echo=FALSE}
+solsbury <-
+  get_tidy_audio_analysis("6vZZtivPrtpggT5SSXsYTy?si=6c683f674685472f") %>%
+  select(segments) %>%
+  unnest(segments) %>%
+  select(start, duration, pitches)
+
+solsbury |>
+  mutate(pitches = map(pitches, compmus_normalise, "euclidean")) |>
+  compmus_gather_chroma() |> 
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = pitch_class,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  theme_minimal() +
+  scale_fill_viridis_c()
+```
+
+> Chromagram of Solsbury Hill by Peter Gabriel. This song is written in B major. There are two remarkable moments (120 s and 190 s). There is a high magnitude for E and C#. 
 
 ### Discussion & Conclusion
 
