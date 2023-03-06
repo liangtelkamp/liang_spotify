@@ -32,72 +32,6 @@ playlists %>%  group_by(playlist_name) %>%   summarise_all(mean) -> playlists.su
 
 Column {.tabset}
 ---------------------------
-### Introduction
-
-What is the influence of 'blues' in rock music? Blues has an influence on rock music, but can we still hear those characteristics in the rock music? Elvis Presley, king of rock, covered a lot of music genres, among them the blues. Can we still find characteristics of blues in modern day Rock music? What do those genres have in common?
-
-Many artists who are succesfull in the rock music, are also known for their blues music. We can think about Eric Clapton, B.B. King and Elvis Presley. I do think aspects of blues are also captured in the rock music. Since it are two different genres, there must be a lot of differences between those genres. I'm curious to research what they have in common and where they differ.
-
-As Spotify has classified numbers for all genres, I have chosen two playlists made by Spotify: Rock classics and Blues classics. I hope that therefore the playlists are composed in the same way. However, I do not know how they build those playlists. The Rock classics consists of 202 songs and the Blues classics of 70 songs. This is a major difference, and I suppose that this would be a limitation of the corpus.
-
-Identify several tracks in your corpus that are either extremely typical or atypical. Why do you think that they are so typical or so strange? Several pages of your final portfolio will be dedicated to detailed analyses of specific tracks, and so it is important to think about which ones might be most interesting. Although it is not required at this stage, you may want to try using Github Markdown Links to an external site.mark-up to format your text.
-
-I do not know if there are any songs atypical, since that is one of the things I want to sort out. Solsbury Hill from Peter Gabriel is however a song that is quite slow and is written in 7/4 time, which is unusual for Rock music. I would classify 'Gimme shelter' from the Rolling stones as a typical rock song. It has the usual time signature 4/4 and there is an electric guitar involved.
-
-The playlists used for this project:
-
-[Blues classics](https://open.spotify.com/playlist/37i9dQZF1DXd9rSDyQguIk?si=618ca90308354bbc)
-
-[Rock classics](https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4%3E)
-
-### Visualisations
-
-#### Scatterplot 1
-
-```{r echo=FALSE}
-scatterplot1 <- ggplot(playlists, 
-       aes(
-        x = energy, 
-        y = acousticness, 
-        alpha = valence,
-        size = 1,
-        color = playlist_name)) +
-  scale_colour_manual(values = c("Blues Classics" = "#87CEFA", "Rock Classics" = "#EE6363"))+
-  geom_point() +
-  ggtitle("The acousticness and energy of a song") +
-  xlab("Energy") +
-  ylab("Acousticness") +
-  labs(color = "Genre", valence = "Valence") +
-  guides(size = FALSE) +
-  theme(text=element_text(size=16)) +
-  geom_point(data = playlists.summary, shape = 15, size = 5, alpha = 1)
-
-ggplotly(scatterplot1)
-```
-
-> This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
-
-#### Barplot 1
-
-```{r echo=FALSE}
-survey <- data.frame(playlist_name=rep(c("Blues Classics", "Rock Classics"),each=7),
-                     variable=rep(c("acousticness", "danceability", "energy", "speechiness", "instrumentalness", "liveness", "valence"),2),
-                     score=c(0.4386061, 0.5666286, 0.5221743, 0.05823000, 0.09435122, 0.1885686, 0.7043571, 0.1356968, 
-                             0.5227475, 0.7320990, 0.05897277, 0.05827160, 0.1937203, 0.5989050))
-
-barplot1 <- ggplot(survey, aes(x=variable, y=score, fill=playlist_name)) + 
-  scale_fill_manual(values = c("Blues Classics" = "#87CEFA", "Rock Classics" = "#EE6363"))+
-  geom_bar(stat="identity", position=position_dodge()) +
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1)) +
-  labs(fill = "Genre") +
-  ggtitle("The average of several variables from the spotify features per genre") +
-  xlab(element_blank()) +
-  ylim(0,1)
-
-ggplotly(barplot1)
-```
-
-> A barplot to show the average scores for multiple variables between 0 and 1.This graph gives us a quick overview of the differences and similarities between the two genres according to spotify. \# Discussion & Conclusion
 
 ### Chromagram
 ```{r echo=FALSE}
@@ -194,6 +128,73 @@ solsbury_hill |>
 ***
 The first matrix is based on the pitch. Blub blub blub
 The second matrix is based on the pitch.
+
+### Introduction
+
+What is the influence of 'blues' in rock music? Blues has an influence on rock music, but can we still hear those characteristics in the rock music? Elvis Presley, king of rock, covered a lot of music genres, among them the blues. Can we still find characteristics of blues in modern day Rock music? What do those genres have in common?
+
+Many artists who are succesfull in the rock music, are also known for their blues music. We can think about Eric Clapton, B.B. King and Elvis Presley. I do think aspects of blues are also captured in the rock music. Since it are two different genres, there must be a lot of differences between those genres. I'm curious to research what they have in common and where they differ.
+
+As Spotify has classified numbers for all genres, I have chosen two playlists made by Spotify: Rock classics and Blues classics. I hope that therefore the playlists are composed in the same way. However, I do not know how they build those playlists. The Rock classics consists of 202 songs and the Blues classics of 70 songs. This is a major difference, and I suppose that this would be a limitation of the corpus.
+
+Identify several tracks in your corpus that are either extremely typical or atypical. Why do you think that they are so typical or so strange? Several pages of your final portfolio will be dedicated to detailed analyses of specific tracks, and so it is important to think about which ones might be most interesting. Although it is not required at this stage, you may want to try using Github Markdown Links to an external site.mark-up to format your text.
+
+I do not know if there are any songs atypical, since that is one of the things I want to sort out. Solsbury Hill from Peter Gabriel is however a song that is quite slow and is written in 7/4 time, which is unusual for Rock music. I would classify 'Gimme shelter' from the Rolling stones as a typical rock song. It has the usual time signature 4/4 and there is an electric guitar involved.
+
+The playlists used for this project:
+
+[Blues classics](https://open.spotify.com/playlist/37i9dQZF1DXd9rSDyQguIk?si=618ca90308354bbc)
+
+[Rock classics](https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=a3aa8ce598534ec4%3E)
+
+### Visualisations
+
+#### Scatterplot 1
+
+```{r echo=FALSE}
+scatterplot1 <- ggplot(playlists, 
+       aes(
+        x = energy, 
+        y = acousticness, 
+        alpha = valence,
+        size = 1,
+        color = playlist_name)) +
+  scale_colour_manual(values = c("Blues Classics" = "#87CEFA", "Rock Classics" = "#EE6363"))+
+  geom_point() +
+  ggtitle("The acousticness and energy of a song") +
+  xlab("Energy") +
+  ylab("Acousticness") +
+  labs(color = "Genre", valence = "Valence") +
+  guides(size = FALSE) +
+  theme(text=element_text(size=16)) +
+  geom_point(data = playlists.summary, shape = 15, size = 5, alpha = 1)
+
+ggplotly(scatterplot1)
+```
+
+> This plot shows two variables that are quite different for blues and rock. The blues classics score in general more for acousticness, while the rock classics have a higher score in energy overall. The valence is expressed in the alpha. The lighter the shade of the point, the less valence a song has.
+
+#### Barplot 1
+
+```{r echo=FALSE}
+survey <- data.frame(playlist_name=rep(c("Blues Classics", "Rock Classics"),each=7),
+                     variable=rep(c("acousticness", "danceability", "energy", "speechiness", "instrumentalness", "liveness", "valence"),2),
+                     score=c(0.4386061, 0.5666286, 0.5221743, 0.05823000, 0.09435122, 0.1885686, 0.7043571, 0.1356968, 
+                             0.5227475, 0.7320990, 0.05897277, 0.05827160, 0.1937203, 0.5989050))
+
+barplot1 <- ggplot(survey, aes(x=variable, y=score, fill=playlist_name)) + 
+  scale_fill_manual(values = c("Blues Classics" = "#87CEFA", "Rock Classics" = "#EE6363"))+
+  geom_bar(stat="identity", position=position_dodge()) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1)) +
+  labs(fill = "Genre") +
+  ggtitle("The average of several variables from the spotify features per genre") +
+  xlab(element_blank()) +
+  ylim(0,1)
+
+ggplotly(barplot1)
+```
+
+> A barplot to show the average scores for multiple variables between 0 and 1.This graph gives us a quick overview of the differences and similarities between the two genres according to spotify. \# Discussion & Conclusion
 
 ### Discussion & Conclusion
 
