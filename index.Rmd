@@ -47,7 +47,9 @@ In this project I'm going to compare the King of Rock and Roll (Elvis Presley) a
 Since Rock and Roll originated from several genres, among them the Blues, I expect that there is an overlap between those genres.
 
 ***
-![B.B. King](bbking.png)
+![B.B. King](bbking.jpeg)
+
+![Elvis Presley](elvis.jpeg)
 
 ### First impression of the playlists
 ```{r echo=FALSE}
