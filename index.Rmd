@@ -36,112 +36,8 @@ simple_statistics <- ggplot(pl_average, aes(score, y = Value, fill = playlist_na
   ylim(0,1)+
   labs(x = "Feature", y = "Average of playlist") 
 ```
-
-Column {.tabset}
+{.tabset}
 ---------------------------
-### Introduction
-In this project we are going to compare two very influential music artists and their genres.
-
-In this project I'm going to compare the King of Rock and Roll (Elvis Presley) against the King of Blues (B.B. King). These two music artists are very influential in their genres. I have combined two playlists as a corpus: [This is Elvis Presley](https://open.spotify.com/playlist/37i9dQZF1DZ06evO2n9pny?si=c5af214d20ab41f0) and [This is B.B. King](https://open.spotify.com/playlist/37i9dQZF1DXbahoSMxtpoF?si=2fa45d75884048b2). The 'This is Elvis Presley' playlist consists of 51 songs. The 'This is B.B. King' playlist consists of 25 songs. The tracks are really representative for the artists, since they are specially made to represent the artists. 
-
-Since Rock and Roll originated from several genres, among them the Blues, I expect that there is an overlap between those genres.
-
-***
-![B.B. King](bbking.jpeg)
-
-![Elvis Presley](elvis.jpeg)
-
-### First impression of the playlists
-```{r echo=FALSE}
-ggplotly(scatterplot)
-```
-
-*** 
-This two scatterplots gives a simple overview of the distribution of the songs. The B.B. King playlist consists of 25 songs. The Elvis Presley plalist consists of 51 songs. 
-
-The size of the points are the valence of the song. There are a lot of songs in the Elvis Presley playlists that are in the top left corner (low energy and a high acousticness). 
-
-### Average scores comparisons
-
-```{r echo=FALSE}
-ggplotly(simple_statistics)
-```
-
-***
-What do we see in the statistics plot? For the valence, danceability and energy B.B. King scores a bit higher then Elvis. Elvis Presley scores higher on acousticness and a bit higher on liveness. 
-
-Is this something one would think? Blues is known to be more acoustic then rock and roll. So it seems a bit strange that the average acousticness of the playlist 'This is Elvis Presley' scores a lot higher. I would also say that it is remarkable that the energy score of B.B. King is higher then Elvis Presley.
-
-### Chromagram
-
-```{r echo=FALSE}
-# Jailhouse rock chromagram
-jailhouse_rock <-
-  get_tidy_audio_analysis("452KBpASS5lZLeJWX9Ixub?si=a5d64e8413854dea") |>
-  select(segments) |>
-  unnest(segments) |>
-  select(start, duration, pitches, timbre)
-jailhouse_rock |>
-  mutate(pitches = map(pitches, compmus_normalise, "euclidean")) |>
-  compmus_gather_chroma() |> 
-  ggplot(
-    aes(
-      x = start + duration / 2,
-      width = duration,
-      y = pitch_class,
-      fill = value
-    )
-  ) +
-  geom_tile() +
-  ggtitle("Chromagram of Jailhouse Rock") +
-  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
-  theme_minimal() +
-  scale_fill_viridis_c()
-```
-
-***
-
-### Self-similarity matrices
-
-```{r echo=FALSE}
-jailhouse_rock |>
-  compmus_self_similarity(pitches, "cosine") |> 
-  ggplot(
-    aes(
-      x = xstart + xduration / 2,
-      width = xduration,
-      y = ystart + yduration / 2,
-      height = yduration,
-      fill = d
-    )
-  ) +
-  geom_tile() +
-  coord_fixed() +
-  scale_fill_viridis_c() +
-  theme_classic() +
-  ggtitle("Self-similarity matrix based on pitch of Jailhouse Rock") +
-  labs(x = "time (s) ", y = "time (s)") 
-
-jailhouse_rock |>
-  compmus_self_similarity(timbre, "cosine") |> 
-  ggplot(
-    aes(
-      x = xstart + xduration / 2,
-      width = xduration,
-      y = ystart + yduration / 2,
-      height = yduration,
-      fill = d
-    )
-  ) +
-  geom_tile() +
-  coord_fixed() +
-  scale_fill_viridis_c() +
-  theme_classic() +
-  labs(x = "", y = "") +
-  ggtitle("Self-similarity matrix based on timbre of Jailhouse Rock")
-```
-
-***
 
 ### Chordogram
 ```{r echo = FALSE}
@@ -256,7 +152,8 @@ keygram_thrill_is_gone <- thrill_is_gone |>
   geom_tile() +
   scale_fill_viridis_c(guide = "none") +
   theme_minimal() +
-  labs(x = "Time (s)", y = "")
+  labs(x = "Time (s)", y = "") +
+  ggtitle("Keygram of 'Thrill is gone'")
 
 chordgram_thrill_is_gone <- thrill_is_gone |> 
   compmus_match_pitch_template(
@@ -270,7 +167,8 @@ chordgram_thrill_is_gone <- thrill_is_gone |>
   geom_tile() +
   scale_fill_viridis_c(guide = "none") +
   theme_minimal() +
-  labs(x = "Time (s)", y = "")
+  labs(x = "Time (s)", y = "") +
+  ggtitle("Chordogram of 'Thrill is gone'")
 
 chordgram_thrill_is_gone
 ```
@@ -338,5 +236,111 @@ blues_rock |>
     colour = "Genre",
     size = "Duration (min)",
     alpha = "Volume (dBFS)"
-  )
+  ) +
+  ggtitle("Track-level summary of B.B. King vs. Elvis Presley")
 ```
+
+
+### Introduction
+In this project we are going to compare two very influential music artists and their genres.
+
+In this project I'm going to compare the King of Rock and Roll (Elvis Presley) against the King of Blues (B.B. King). These two music artists are very influential in their genres. I have combined two playlists as a corpus: [This is Elvis Presley](https://open.spotify.com/playlist/37i9dQZF1DZ06evO2n9pny?si=c5af214d20ab41f0) and [This is B.B. King](https://open.spotify.com/playlist/37i9dQZF1DXbahoSMxtpoF?si=2fa45d75884048b2). The 'This is Elvis Presley' playlist consists of 51 songs. The 'This is B.B. King' playlist consists of 25 songs. The tracks are really representative for the artists, since they are specially made to represent the artists. 
+
+Since Rock and Roll originated from several genres, among them the Blues, I expect that there is an overlap between those genres.
+
+***
+![B.B. King](bbking.jpeg){width=100%}
+
+![Elvis Presley](elvis.jpeg){width=100%}
+
+### First impression of the playlists
+```{r echo=FALSE}
+ggplotly(scatterplot)
+```
+
+*** 
+This two scatterplots gives a simple overview of the distribution of the songs. The B.B. King playlist consists of 25 songs. The Elvis Presley plalist consists of 51 songs. 
+
+The size of the points are the valence of the song. There are a lot of songs in the Elvis Presley playlists that are in the top left corner (low energy and a high acousticness). 
+
+### Average scores comparisons
+
+```{r echo=FALSE}
+ggplotly(simple_statistics)
+```
+
+***
+What do we see in the statistics plot? For the valence, danceability and energy B.B. King scores a bit higher then Elvis. Elvis Presley scores higher on acousticness and a bit higher on liveness. 
+
+Is this something one would think? Blues is known to be more acoustic then rock and roll. So it seems a bit strange that the average acousticness of the playlist 'This is Elvis Presley' scores a lot higher. I would also say that it is remarkable that the energy score of B.B. King is higher then Elvis Presley.
+
+### Chromagram
+
+```{r echo=FALSE}
+# Jailhouse rock chromagram
+jailhouse_rock <-
+  get_tidy_audio_analysis("452KBpASS5lZLeJWX9Ixub?si=a5d64e8413854dea") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches, timbre)
+jailhouse_rock |>
+  mutate(pitches = map(pitches, compmus_normalise, "euclidean")) |>
+  compmus_gather_chroma() |> 
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = pitch_class,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  ggtitle("Chromagram of Jailhouse Rock") +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  theme_minimal() +
+  scale_fill_viridis_c()
+```
+
+***
+
+### Self-similarity matrices
+
+```{r echo=FALSE}
+jailhouse_rock |>
+  compmus_self_similarity(pitches, "cosine") |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c() +
+  theme_classic() +
+  ggtitle("Self-similarity matrix based on pitch of Jailhouse Rock") +
+  labs(x = "time (s) ", y = "time (s)") 
+
+jailhouse_rock |>
+  compmus_self_similarity(timbre, "cosine") |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c() +
+  theme_classic() +
+  labs(x = "", y = "") +
+  ggtitle("Self-similarity matrix based on timbre of Jailhouse Rock")
+```
+
+***
