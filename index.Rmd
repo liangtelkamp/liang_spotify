@@ -174,7 +174,9 @@ chordgram_thrill_is_gone
 ```
 
 ***
-Chordogram of one of the most popular songs of B.B. King.
+Chrodogram of 'The thrill is gone'.
+
+'The thrill is gone' by B.B. King has four verses, from which three of the verses are the same. There is an intro and a very long outro on the guitar, and between verse two and three there is a bridge. 
 
 ### Keygram
 
@@ -183,7 +185,9 @@ keygram_thrill_is_gone
 ```
 
 ***
-Keygram of one of the most popular songs of B.B. King.
+'The thrill is gone' by B.B. King has four verses, from which three of the verses are the same. There is an intro and a very long outro on the guitar, and between verse two and three there is a bridge. 
+
+Keygram of one of 'The thrill is gone' by B.B. King. The song holds almost the whole song the same key. Right before we hit the 200 seconds, we see a little remarkable line in the keygram. This is the fourth verse of the song, and just like our keygram is showing, this verse is more different from the other verses.
 
 ### Standard deviation
 
@@ -303,7 +307,7 @@ jailhouse_rock |>
 
 ***
 
-### Self-similarity matrices
+### Self-similarity matrices Jailhouse Rock
 
 ```{r echo=FALSE}
 jailhouse_rock |>
@@ -344,3 +348,33 @@ jailhouse_rock |>
 ```
 
 ***
+On the left we see self-similarity matrices based on pitch and timbre of Jailhouse Rock. For everyone who knows this number, the number is quite repetitive and that is exactly what we can see in the matrices. There are a lot of diagonals and at 60s we can see that there is something else happening. There is a instrumental moment in the middle of the song. 
+
+### Self-similarity matrix The Thrill is gone
+```{r echo=FALSE}
+thrill_is_gone <-
+  get_tidy_audio_analysis("3cg0dJfrQB66Qf2YthPb6G?si=b629a9347001477c") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches, timbre)
+
+thrill_is_gone |>
+  compmus_self_similarity(pitches, "cosine") |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c() +
+  theme_classic() +
+  labs(x = "time (s) ", y = "time (s)") 
+```
+
+***
+On the left we see a self-similarity matrix based on pitch of 'The thrill is gone'. We see that there is a lot of diagonal lines, because of the repetition. The diagonals disappear in the last minute. 
